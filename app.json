@@ -1,0 +1,41 @@
+{
+    "id": "3dc3ac87-15a2-4b42-a37a-0e0e8c5a0737",
+    "name": "Cronus_Agent_AG",
+    "publisher": "Default Publisher",
+    "version": "1.0.0.2",
+    "brief": "Follows up on purchase orders missing expected delivery dates.",
+    "description": "Lists open and released purchase orders without expected receipt dates and prepares unsent supplier email drafts for review.",
+    "privacyStatement": "",
+    "EULA": "",
+    "help": "",
+    "url": "",
+    "logo": "",
+    "dependencies": [
+        {
+            "id": "10cb69d9-bc8a-4d27-970a-9e110e9db2a5",
+            "name": "_Exclude_APIV2_",
+            "publisher": "Microsoft",
+            "version": "24.0.0.0"
+        }
+    ],
+    "screenshots": [],
+    "platform": "1.0.0.0",
+    "application": "29.0.54011.55407",
+    "idRanges": [
+        {
+            "from": 50000,
+            "to": 80000
+        }
+    ],
+    "resourceExposurePolicy": {
+        "allowDebugging": true,
+        "allowDownloadingSource": true,
+        "includeSourceInSymbolFile": true
+    },
+    "runtime": "18.0",
+    "features": [
+        "NoImplicitWith",
+        "TranslationFile",
+        "ExcludeGeneratedTranslations"
+    ]
+}
