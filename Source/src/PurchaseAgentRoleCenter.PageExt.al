@@ -1,4 +1,4 @@
-pageextension 50000 "Purchase Agent Role Center Ext" extends "Purchasing Agent Role Center"
+pageextension 70000 "Purchase Agent Role Center Ext" extends "Purchasing Agent Role Center"
 {
     actions
     {

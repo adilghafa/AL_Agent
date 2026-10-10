@@ -1,0 +1,95 @@
+{
+	"folders": [
+		{
+			"name": "Source",
+			"path": "Source"
+		},
+		{
+			"name": "Interfaces",
+			"path": "Interfaces"
+		},
+		{
+			"name": "Debug",
+			"path": "Debug"
+		}
+	],
+	"settings": {
+		"[al]": {
+			"editor.wordBasedSuggestions": "off",
+			"editor.suggestSelection": "first",
+			"editor.formatOnSave": true,
+			"editor.semanticHighlighting.enabled": true,
+			"editor.foldingImportsByDefault": true
+		},
+		"al.packageCachePath": [
+			"../.alpackages"
+		],
+		"al.enableCodeAnalysis": true,
+		"al.enableCodeActions": true,
+		"al.backgroundCodeAnalysis": "Project",
+		"al.codeAnalyzers": [
+			"${CodeCop}",
+			"${UICop}",
+			"${PerTenantExtensionCop}"
+		],
+		"al.ruleSetPath": "../alrules.json",
+		"alOutline.codeCleanupActions": [
+			"SortProperties",
+			"AddMissingParentheses",
+			"FixIdentifiersCase",
+			"FixKeywordsCase",
+			"RemoveBeginEnd",
+			"RemoveEmptyLines",
+			"RemoveRedundantAppAreas",
+			"SortProperties",
+			"SortVariables",
+			"TrimTrailingWhitespace"
+		],
+		"alOutline.variablesSortMode": "mainTypeNameOnlyKeepVariableNameOrder",
+		"CRS.ObjectNameSuffix": " PTE",
+		"alVarHelper.ignoreALSuffix": "PTE",
+		"CRS.RemoveSuffixFromFilename": true,
+		"CRS.FileNamePattern": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+		"CRS.FileNamePatternExtensions": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+		"CRS.FileNamePatternPageCustomizations": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+		"CRS.OnSaveAlFileAction": "DoNothing",
+		"todo-tree.general.tags": [
+			"REQUESTED",
+			"BUG",
+			"FIXME",
+			"TODO",
+			"UPGRADE",
+			"TEST",
+			"ASK",
+			"REQUEST",
+			"LATER",
+			"WISH"
+		],
+		"al.showHomeAtStartup": "WhenUpdated",
+	},
+	"extensions": {
+		"recommendations": [
+			"waldo.al-extension-pack"
+		],
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+							{
+            "name": "Dev sandbox",
+            "request": "launch",
+            "type": "al",
+            "environmentType": "Sandbox",
+            "environmentName": "Dev",
+            "breakOnError": "All",
+            "launchBrowser": true,
+            "enableLongRunningSqlStatements": true,
+            "enableSqlInformationDebugger": true,
+            "tenant": "d67453ad-9b35-4bc3-863f-92074f4e04c2",
+            "usePublicURLFromServer": true,
+            "schemaUpdateMode": "ForceSync"
+        }
+	
+		]
+		
+}}

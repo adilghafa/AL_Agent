@@ -1,4 +1,4 @@
-codeunit 50001 "Purchase Agent Task Execution" implements IAgentTaskExecution
+codeunit 70001 "Purchase Agent Task Execution" implements IAgentTaskExecution
 {
     procedure AnalyzeAgentTaskMessage(AgentTaskMessage: Record "Agent Task Message"; var Annotations: Record "Agent Annotation")
     begin

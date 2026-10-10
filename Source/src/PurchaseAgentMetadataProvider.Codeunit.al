@@ -1,12 +1,5 @@
-codeunit 50000 "Purchase Agent Metadata" implements IAgentFactory, IAgentMetadata, IAgentManualTaskCreation
+codeunit 70000 "Purchase Agent Metadata" implements IAgentFactory, IAgentMetadata, IAgentManualTaskCreation
 {
-    Subtype = Install;
-
-    trigger OnInstallAppPerDatabase()
-    begin
-        RegisterCopilotCapability();
-    end;
-
     procedure GetDefaultInitials(): Text[4]
     begin
         exit('PO');
@@ -28,7 +21,12 @@ codeunit 50000 "Purchase Agent Metadata" implements IAgentFactory, IAgentMetadat
     end;
 
     procedure GetDefaultProfile(var TempAllProfile: Record "All Profile" temporary)
+    var
+        Agent: Codeunit Agent;
+        CurrentModuleInfo: ModuleInfo;
     begin
+        NavApp.GetCurrentModuleInfo(CurrentModuleInfo);
+        Agent.PopulateDefaultProfile('Purchase Order Agent', CurrentModuleInfo.Id, TempAllProfile);
     end;
 
     procedure GetDefaultAccessControls(var TempAccessControlBuffer: Record "Access Control Buffer" temporary)
@@ -93,7 +91,13 @@ codeunit 50000 "Purchase Agent Metadata" implements IAgentFactory, IAgentMetadat
     var
         CopilotCapability: Codeunit "Copilot Capability";
     begin
-        if not CopilotCapability.IsCapabilityRegistered(Enum::"Copilot Capability"::"Purchase Order Agent") then
+        if CopilotCapability.IsCapabilityRegistered(Enum::"Copilot Capability"::"Purchase Order Agent") then
+            CopilotCapability.ModifyCapability(
+                Enum::"Copilot Capability"::"Purchase Order Agent",
+                Enum::"Copilot Availability"::Preview,
+                Enum::"Copilot Billing Type"::"Microsoft Billed",
+                LearnMoreUrlTxt)
+        else
             CopilotCapability.RegisterCapability(
                 Enum::"Copilot Capability"::"Purchase Order Agent",
                 Enum::"Copilot Availability"::Preview,

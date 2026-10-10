@@ -1,8 +1,8 @@
 {
-    "id": "3dc3ac87-15a2-4b42-a37a-0e0e8c5a0737",
+    "id": "3dc3ac87-15a2-4b42-a37a-0e0e8c5a0838",
     "name": "Cronus_Agent_AG",
     "publisher": "Default Publisher",
-    "version": "1.0.0.2",
+    "version": "1.0.0.0",
     "brief": "Follows up on purchase orders missing expected delivery dates.",
     "description": "Lists open and released purchase orders without expected receipt dates and prepares unsent supplier email drafts for review.",
     "privacyStatement": "",
@@ -16,6 +16,18 @@
             "name": "_Exclude_APIV2_",
             "publisher": "Microsoft",
             "version": "24.0.0.0"
+        },
+        {
+            "id": "23b1772f-b8b8-4e87-9339-9ff7cbb2364b",
+            "name": "Sales Order Agent",
+            "publisher": "Microsoft",
+            "version": "29.0.54011.55407"
+        },
+        {
+            "id": "66efe10c-8033-403b-a86d-77c0887178ba",
+            "name": "Expense Agent (Preview)",
+            "publisher": "Microsoft",
+            "version": "29.0.54011.55407"
         }
     ],
     "screenshots": [],

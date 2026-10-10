@@ -1,4 +1,4 @@
-page 50000 "Purchase Orders Missing Dates"
+page 70000 "Purchase Orders Missing Dates"
 {
     ApplicationArea = All;
     Caption = 'Purchase Orders Missing Delivery Dates';
