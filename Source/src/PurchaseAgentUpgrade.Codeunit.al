@@ -5,9 +5,9 @@ codeunit 70002 "Purchase Agent Upgrade"
     trigger OnUpgradePerDatabase()
     var
         PurchaseAgentMetadata: Codeunit "Purchase Agent Metadata";
-        ItemBarcodeAgentMetadata: Codeunit "Item Barcode Agent Metadata";
+        ItemListAgentMetadata: Codeunit "Item List Agent Metadata";
     begin
         PurchaseAgentMetadata.RegisterCopilotCapability();
-        ItemBarcodeAgentMetadata.RegisterCopilotCapability();
+        ItemListAgentMetadata.RegisterCopilotCapability();
     end;
 }

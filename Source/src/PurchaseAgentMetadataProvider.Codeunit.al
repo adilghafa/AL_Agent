@@ -26,11 +26,20 @@ codeunit 70000 "Purchase Agent Metadata" implements IAgentFactory, IAgentMetadat
         CurrentModuleInfo: ModuleInfo;
     begin
         NavApp.GetCurrentModuleInfo(CurrentModuleInfo);
-        Agent.PopulateDefaultProfile('Purchase Order Agent', CurrentModuleInfo.Id, TempAllProfile);
+        Agent.PopulateDefaultProfile(PurchaseOrderAgentProfileTok, CurrentModuleInfo.Id, TempAllProfile);
     end;
 
     procedure GetDefaultAccessControls(var TempAccessControlBuffer: Record "Access Control Buffer" temporary)
+    var
+        CurrentModuleInfo: ModuleInfo;
     begin
+        NavApp.GetCurrentModuleInfo(CurrentModuleInfo);
+        TempAccessControlBuffer.Init();
+        TempAccessControlBuffer."Company Name" := CopyStr(CompanyName(), 1, MaxStrLen(TempAccessControlBuffer."Company Name"));
+        TempAccessControlBuffer.Scope := TempAccessControlBuffer.Scope::System;
+        TempAccessControlBuffer."App ID" := CurrentModuleInfo.Id;
+        TempAccessControlBuffer."Role ID" := PurchaseOrderAgentPermissionSetTok;
+        TempAccessControlBuffer.Insert();
     end;
 
     procedure GetInitials(AgentUserId: Guid): Text[4]
@@ -108,6 +117,8 @@ codeunit 70000 "Purchase Agent Metadata" implements IAgentFactory, IAgentMetadat
     var
         FileUploadsNotSupportedErr: Label 'This agent does not support uploaded files.';
         LearnMoreUrlTxt: Label 'https://learn.microsoft.com/dynamics365/business-central/', Locked = true;
-        ManualTaskMessageTxt: Label 'Review open and released purchase orders that do not have an expected receipt date. For each one, prepare an email draft to the vendor asking them to confirm the delivery date. Do not send any email. Report orders whose vendor has no email address.';
+        PurchaseOrderAgentPermissionSetTok: Label 'PURCHASE ORDER AGENT', Locked = true, MaxLength = 20;
+        PurchaseOrderAgentProfileTok: Label 'Purchase Order Agent', Locked = true;
+        ManualTaskMessageTxt: Label 'Open Missing Delivery Dates in the Purchase Order Agent profile. Review open and released purchase orders without expected receipt dates. For each order, use Request Delivery Date to save an unsent supplier email draft. Never send or enqueue an email. Do not change purchase orders or vendors. Report orders whose vendor has no email address and summarize the drafts saved.';
         ManualTaskTitleTxt: Label 'Follow up on purchase orders missing delivery dates';
 }

@@ -80,12 +80,12 @@
             "request": "launch",
             "type": "al",
             "environmentType": "Sandbox",
-            "environmentName": "Dev",
+            "environmentName": "AdilsAI",
             "breakOnError": "All",
             "launchBrowser": true,
             "enableLongRunningSqlStatements": true,
             "enableSqlInformationDebugger": true,
-            "tenant": "d67453ad-9b35-4bc3-863f-92074f4e04c2",
+            "tenant": "92941b34-853a-46d8-99be-ea5719e8f2aa",
             "usePublicURLFromServer": true,
             "schemaUpdateMode": "ForceSync"
         }

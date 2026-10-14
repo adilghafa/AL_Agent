@@ -227,8 +227,8 @@ page 70001 "Purchase Order Agent Setup"
             AgentSetupBuffer,
             AgentUserSecurityId,
             Enum::"Agent Metadata Provider"::"Purchase Order Agent",
-            CopyStr(UserId(), 1, MaxStrLen(DefaultUserName)),
-            CopyStr(UserId(), 1, MaxStrLen(DefaultDisplayName)),
+            DefaultUserNameTok,
+            DefaultDisplayNameLbl,
             AgentSummaryTxt);
         CurrPage.AgentSetupPart.Page.SetAgentSetupBuffer(AgentSetupBuffer);
         CurrPage.AgentSetupPart.Page.Update(false);
@@ -442,8 +442,8 @@ page 70001 "Purchase Order Agent Setup"
         AutoLbl: Label 'Auto';
         AutoModelIdLbl: Label 'AUTO', Locked = true;
         AgentSummaryTxt: Label 'Follows up on purchase orders missing expected delivery dates and prepares email drafts for supplier review.';
-        DefaultInstructionsTxt: Label 'Follow up on open and released purchase orders that do not have an expected receipt date. Prepare an email draft to the supplier asking them to confirm the delivery date. Never send an email. Report purchase orders whose supplier does not have an email address.';
-        DefaultDisplayName: Text[80];
-        DefaultUserName: Code[50];
+        DefaultInstructionsTxt: Label 'Use the Purchase Order Agent profile. Open Missing Delivery Dates to review open and released purchase orders without expected receipt dates. For each order, use Request Delivery Date to save an unsent supplier email draft. Never send or enqueue an email. Do not change purchase orders or vendors. Report orders whose vendor has no email address and summarize the drafts saved. Do not monitor incoming email.';
+        DefaultDisplayNameLbl: Label 'Purchase Order Agent', MaxLength = 80;
+        DefaultUserNameTok: Label 'PURCHASE-AGENT', Locked = true, MaxLength = 50;
         AgentUserSecurityId: Guid;
 }

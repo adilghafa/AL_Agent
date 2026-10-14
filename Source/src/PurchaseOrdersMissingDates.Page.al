@@ -55,7 +55,7 @@ page 70000 "Purchase Orders Missing Dates"
                 Promoted = true;
                 PromotedCategory = Process;
                 PromotedIsBig = true;
-                ToolTip = 'Prepare an unsent email asking the vendor to confirm the delivery date.';
+                ToolTip = 'Save an unsent email draft in the Email Outbox asking the vendor to confirm the delivery date. This action does not send the email.';
 
                 trigger OnAction()
                 var
@@ -79,7 +79,8 @@ page 70000 "Purchase Orders Missing Dates"
                         StrSubstNo(DeliveryDateSubjectLbl, Rec."No."),
                         StrSubstNo(DeliveryDateBodyLbl, Vendor.Name, Rec."No."),
                         false);
-                    Email.OpenInEditor(EmailMessage);
+                    Email.SaveAsDraft(EmailMessage);
+                    Message(DeliveryDateDraftSavedMsg, Rec."No.");
                 end;
             }
         }
@@ -94,6 +95,7 @@ page 70000 "Purchase Orders Missing Dates"
         DeliveryDateAlreadySetErr: Label 'Purchase order %1 already has an expected receipt date.', Comment = '%1 = purchase order number.';
         DeliveryDateBodyLbl: Label 'Dear %1, please confirm the expected delivery date for purchase order %2. Thank you.', Comment = '%1 = vendor name; %2 = purchase order number.';
         DeliveryDateSubjectLbl: Label 'Request for delivery date - Purchase Order %1', Comment = '%1 = purchase order number.';
+        DeliveryDateDraftSavedMsg: Label 'An unsent email draft for purchase order %1 has been saved in the Email Outbox.', Comment = '%1 = purchase order number.';
         InvalidStatusErr: Label 'Purchase order %1 must be open or released to request a delivery date.', Comment = '%1 = purchase order number.';
         PurchaseOrderOnlyErr: Label 'A delivery date can only be requested for a purchase order.';
         VendorEmailMissingErr: Label 'Vendor %1 does not have an email address. Add an email address to the vendor card before preparing the request.', Comment = '%1 = vendor number.';
