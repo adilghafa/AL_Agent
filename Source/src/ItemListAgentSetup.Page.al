@@ -1,12 +1,12 @@
 page 50002 "Item List Agent Setup"
 {
     ApplicationArea = All;
-    Caption = 'Configure Item List Assistant';
+    Caption = 'Configure Purchased Item Overview Assistant';
     Extensible = false;
     PageType = ConfigurationDialog;
     SourceTable = "Agent Setup Buffer";
     SourceTableTemporary = true;
-    InstructionalText = 'Create a read-only assistant for item searches, inventory availability, customer pricing, and sales analysis. Default instructions are applied when the agent is created.';
+    InstructionalText = 'Create a read-only assistant that lists purchased items by supplier. Default instructions are applied when the agent is created.';
 
     layout
     {
@@ -26,7 +26,13 @@ page 50002 "Item List Agent Setup"
                     Caption = 'Instructions';
                     Editable = false;
                     MultiLine = true;
-                    ToolTip = 'Shows the default instructions for new assistants. Existing agent instructions are preserved when updating setup.';
+                    ToolTip = 'Shows the default instructions for new assistants.';
+                }
+                field(ApplyDefaultInstructions; ApplyDefaultInstructions)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Apply Default Instructions';
+                    ToolTip = 'Specifies whether saving setup replaces the agent instructions with the purchased-item overview defaults. This is selected by default for existing agents; clear it to preserve custom instructions.';
                 }
             }
         }
@@ -39,7 +45,7 @@ page 50002 "Item List Agent Setup"
             systemaction(OK)
             {
                 Caption = 'Save';
-                ToolTip = 'Create or update the Item List Assistant.';
+                ToolTip = 'Create or update the Purchased Item Overview Assistant.';
             }
             systemaction(Cancel)
             {
@@ -59,6 +65,7 @@ page 50002 "Item List Agent Setup"
             if not Evaluate(AgentUserSecurityId, UserSecurityIDFilter) then
                 Error(InvalidAgentFilterErr);
 
+        ApplyDefaultInstructions := not IsNullGuid(AgentUserSecurityId);
         DefaultInstructions := ItemListAgentMetadata.GetDefaultInstructions();
         AgentSetup.GetSetupRecord(
             TempAgentSetupBuffer,
@@ -86,7 +93,7 @@ page 50002 "Item List Agent Setup"
         else
             AgentUserSecurityId := TempAgentSetupBuffer."User Security ID";
 
-        if IsNewAgent then
+        if IsNewAgent or ApplyDefaultInstructions then
             Agent.SetInstructions(AgentUserSecurityId, SecretStrSubstNo('%1', DefaultInstructions));
         exit(true);
     end;
@@ -96,8 +103,9 @@ page 50002 "Item List Agent Setup"
         AgentSetup: Codeunit "Agent Setup";
         AgentUserSecurityId: Guid;
         DefaultInstructions: Text;
+        ApplyDefaultInstructions: Boolean;
         DefaultUserNameTok: Label 'ITEM-LIST-AGENT', Locked = true, MaxLength = 50;
-        DefaultDisplayNameLbl: Label 'Item List Assistant', MaxLength = 80;
-        AgentSummaryTxt: Label 'Read-only item searches, inventory availability, customer pricing, and sales analysis.';
+        DefaultDisplayNameLbl: Label 'Purchased Item Overview Assistant', MaxLength = 80;
+        AgentSummaryTxt: Label 'Read-only overview of purchased items by supplier.';
         InvalidAgentFilterErr: Label 'The agent user security ID filter is not a valid GUID.';
 }

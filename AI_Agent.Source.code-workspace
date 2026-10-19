@@ -53,7 +53,7 @@
 		"CRS.FileNamePatternExtensions": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
 		"CRS.FileNamePatternPageCustomizations": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
 		"CRS.OnSaveAlFileAction": "DoNothing",
-		"todo-tree.general.tags": [
+		"better-todo-tree.general.tags": [
 			"REQUESTED",
 			"BUG",
 			"FIXME",
@@ -66,6 +66,9 @@
 			"WISH"
 		],
 		"al.showHomeAtStartup": "WhenUpdated",
+		"better-todo-tree.general.tagGroups": {
+			
+		},
 	},
 	"extensions": {
 		"recommendations": [
@@ -87,7 +90,8 @@
             "enableSqlInformationDebugger": true,
             "tenant": "92941b34-853a-46d8-99be-ea5719e8f2aa",
             "usePublicURLFromServer": true,
-            "schemaUpdateMode": "ForceSync"
+            "schemaUpdateMode": "ForceSync",
+			
         }
 	
 		]
