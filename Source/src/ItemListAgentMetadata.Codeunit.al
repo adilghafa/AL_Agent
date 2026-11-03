@@ -7,7 +7,7 @@ codeunit 50000 "Item List Agent Metadata" implements IAgentFactory, IAgentMetada
 
     procedure GetFirstTimeSetupPageId(): Integer
     begin
-        exit(Page::"Item List Agent Setup");
+        exit(0);
     end;
 
     procedure ShowCanCreateAgent(): Boolean
@@ -49,7 +49,7 @@ codeunit 50000 "Item List Agent Metadata" implements IAgentFactory, IAgentMetada
 
     procedure GetSetupPageId(AgentUserId: Guid): Integer
     begin
-        exit(Page::"Item List Agent Setup");
+        exit(0);
     end;
 
     procedure GetSummaryPageId(AgentUserId: Guid): Integer
